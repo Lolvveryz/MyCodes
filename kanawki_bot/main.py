@@ -1,6 +1,6 @@
 import telebot
-
-bot = telebot.TeleBot("5964862187:AAEuCxmO-pB0eEv8ZlVPYJfs-3QcYJ8S-kQ")
+from DATA.data import Kanavki
+bot = telebot.TeleBot(Kanavki.token)
 
 @bot.message_handler(commands=["start", "login"])
 def commands(mess):

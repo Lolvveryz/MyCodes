@@ -2,7 +2,6 @@ from data import bot , users
 from User import User
 from telebot import types
 
-import 
 import pprint
 
 @bot.message_handler(commands=['start'])

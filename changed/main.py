@@ -1,21 +1,21 @@
 import telebot , importlib , shutil , os
+from DATA.data import changed
 
-
-bot = telebot.TeleBot("6159454834:AAGtkISBzGFE8rBtD4Ksqy1YeBKRpqpSOL8")
+bot = telebot.TeleBot(changed.token)
 ids = [661202949, 1583126842, 6187875959]
 isNamed = False
-directory = "D:\\Codes\\bot\\changed\\added"
+directory = changed.directory
 
 
 status = {661202949 : False, # мій ip
           1583126842 : False}# твій ip
 
 try:
-    shutil.rmtree('D:\\Codes\\bot\\changed\\added')
-    os.mkdir("D:\\Codes\\bot\\changed\\added")
+    shutil.rmtree(directory+"\\added")
+    os.mkdir(directory+"\\added")
 
 except:
-    os.mkdir("D:\\Codes\\bot\\changed\\added")
+    os.mkdir(directory+"\\added")
 
 @bot.message_handler(commands=["start"])
 def start(mess):
@@ -50,20 +50,20 @@ def main(mess):
                 print(mess.from_user)
 
         elif mess.text == "/admin":
-            with open("D:\\Codes\\bot\\changed\\main.py", "w"):
+            with open(f"{directory}\\main.py", "w"):
                 pass #не дороблено , має змінюватись основниц прям код , не дороблено , взагалі тільки почав , якщо-що можеш видалити 53-55 строчки
 
         elif id in ids and status[id]:
             
             if isNamed:
 
-                with open(f"D:\\Codes\\bot\\changed\\added\\{branch_name}", "w") as d:
+                with open(f"{directory}\\added\\{branch_name}", "w") as d:
                     d.write(mess.text)
 
                 isNamed = not isNamed
                 status[id] = not status[id]
 
-                spec = importlib.util.spec_from_file_location(branch_name, f"D:\\Codes\\bot\\changed\\added\\{branch_name}")
+                spec = importlib.util.spec_from_file_location(branch_name, f"{directory}\\added\\{branch_name}")
                 m = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(m)
 
@@ -73,7 +73,7 @@ def main(mess):
                 bot.unpin_all_chat_messages(chat)
             else:
                 def file_already_exist(name):
-                    for root, dirs, files in os.walk(directory):
+                    for root, dirs, files in os.walk(directory+"\\added"):
                         for file_name in files:
                             if file_name[:-3] == name:
                                 bot.send_message(chat, "Файл з такою назвою вже існує , введіть іншу назву")
@@ -89,7 +89,7 @@ def main(mess):
         else:
             if mess.text == "Тестування кодів":
                 markup = telebot.types.InlineKeyboardMarkup(row_width=1)
-                for root, dirs, files in os.walk(directory):
+                for root, dirs, files in os.walk(directory+"\\added"):
                     for file_name in files:
                         markup.add(telebot.types.InlineKeyboardButton(file_name, callback_data=file_name))
                     break
@@ -103,7 +103,7 @@ def main(mess):
 def callback(call):
     chat = call.message.chat.id
 
-    spec = importlib.util.spec_from_file_location(call.data, f"D:\\Codes\\bot\\changed\\added\\{call.data}")
+    spec = importlib.util.spec_from_file_location(call.data, f"{directory}\\added\\{call.data}")
     m = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(m)
 

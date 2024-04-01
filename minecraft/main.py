@@ -1,4 +1,5 @@
 from javascript import require, On
+from DATA.data import Minecraft
 mineflayer = require('mineflayer')
 pathfinder = require('mineflayer-pathfinder')
 
@@ -6,8 +7,8 @@ RANGE_GOAL = 1
 BOT_USERNAME = 'python'
 
 bot = mineflayer.createBot({
-  'host': 'lolvv.aternos.me',
-  'port': 55630,
+  'host': Minecraft.host,
+  'port': Minecraft.port,
   'username': BOT_USERNAME
 })
 
