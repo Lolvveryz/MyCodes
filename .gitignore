@@ -8,8 +8,8 @@
 
 /node_modules
 /pyTest
-/busines
-/Bunker
+/bots/busines
+/bots/Bunker
 
 /package-lock.json
 /package.json
