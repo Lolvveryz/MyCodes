@@ -1,0 +1,498 @@
+{
+    "allay": [
+        0,
+        "passive mobs"
+    ],
+    "area effect cloud": [
+        1,
+        "unknown"
+    ],
+    "armor stand": [
+        2,
+        "immobile"
+    ],
+    "arrow": [
+        3,
+        "projectiles"
+    ],
+    "axolotl": [
+        4,
+        "passive mobs"
+    ],
+    "bat": [
+        5,
+        "passive mobs"
+    ],
+    "bee": [
+        6,
+        "passive mobs"
+    ],
+    "blaze": [
+        7,
+        "hostile mobs"
+    ],
+    "block display": [
+        8,
+        "immobile"
+    ],
+    "boat": [
+        9,
+        "vehicles"
+    ],
+    "camel": [
+        10,
+        "passive mobs"
+    ],
+    "cat": [
+        11,
+        "passive mobs"
+    ],
+    "cave spider": [
+        12,
+        "hostile mobs"
+    ],
+    "boat with chest": [
+        13,
+        "vehicles"
+    ],
+    "minecart with chest": [
+        14,
+        "vehicles"
+    ],
+    "chicken": [
+        15,
+        "passive mobs"
+    ],
+    "cod": [
+        16,
+        "passive mobs"
+    ],
+    "minecart with command block": [
+        17,
+        "vehicles"
+    ],
+    "cow": [
+        18,
+        "passive mobs"
+    ],
+    "creeper": [
+        19,
+        "hostile mobs"
+    ],
+    "dolphin": [
+        20,
+        "passive mobs"
+    ],
+    "donkey": [
+        21,
+        "passive mobs"
+    ],
+    "dragon fireball": [
+        22,
+        "projectiles"
+    ],
+    "drowned": [
+        23,
+        "hostile mobs"
+    ],
+    "thrown egg": [
+        24,
+        "projectiles"
+    ],
+    "elder guardian": [
+        25,
+        "hostile mobs"
+    ],
+    "end crystal": [
+        26,
+        "immobile"
+    ],
+    "ender dragon": [
+        27,
+        "hostile mobs"
+    ],
+    "thrown ender pearl": [
+        28,
+        "projectiles"
+    ],
+    "enderman": [
+        29,
+        "hostile mobs"
+    ],
+    "endermite": [
+        30,
+        "hostile mobs"
+    ],
+    "evoker": [
+        31,
+        "hostile mobs"
+    ],
+    "evoker fangs": [
+        32,
+        "hostile mobs"
+    ],
+    "thrown bottle o' enchanting": [
+        33,
+        "projectiles"
+    ],
+    "experience orb": [
+        34,
+        "unknown"
+    ],
+    "eye of ender": [
+        35,
+        "unknown"
+    ],
+    "falling block": [
+        36,
+        "unknown"
+    ],
+    "firework rocket": [
+        37,
+        "projectiles"
+    ],
+    "fox": [
+        38,
+        "passive mobs"
+    ],
+    "frog": [
+        39,
+        "passive mobs"
+    ],
+    "minecart with furnace": [
+        40,
+        "vehicles"
+    ],
+    "ghast": [
+        41,
+        "hostile mobs"
+    ],
+    "giant": [
+        42,
+        "hostile mobs"
+    ],
+    "glow item frame": [
+        43,
+        "immobile"
+    ],
+    "glow squid": [
+        44,
+        "passive mobs"
+    ],
+    "goat": [
+        45,
+        "passive mobs"
+    ],
+    "guardian": [
+        46,
+        "hostile mobs"
+    ],
+    "hoglin": [
+        47,
+        "hostile mobs"
+    ],
+    "minecart with hopper": [
+        48,
+        "vehicles"
+    ],
+    "horse": [
+        49,
+        "passive mobs"
+    ],
+    "husk": [
+        50,
+        "hostile mobs"
+    ],
+    "illusioner": [
+        51,
+        "hostile mobs"
+    ],
+    "interaction": [
+        52,
+        "immobile"
+    ],
+    "iron golem": [
+        53,
+        "passive mobs"
+    ],
+    "item": [
+        54,
+        "unknown"
+    ],
+    "item display": [
+        55,
+        "immobile"
+    ],
+    "item frame": [
+        56,
+        "immobile"
+    ],
+    "fireball": [
+        57,
+        "projectiles"
+    ],
+    "leash knot": [
+        58,
+        "immobile"
+    ],
+    "lightning bolt": [
+        59,
+        "unknown"
+    ],
+    "llama": [
+        60,
+        "passive mobs"
+    ],
+    "llama spit": [
+        61,
+        "projectiles"
+    ],
+    "magma cube": [
+        62,
+        "hostile mobs"
+    ],
+    "marker": [
+        63,
+        "unknown"
+    ],
+    "minecart": [
+        64,
+        "vehicles"
+    ],
+    "mooshroom": [
+        65,
+        "passive mobs"
+    ],
+    "mule": [
+        66,
+        "passive mobs"
+    ],
+    "ocelot": [
+        67,
+        "passive mobs"
+    ],
+    "painting": [
+        68,
+        "immobile"
+    ],
+    "panda": [
+        69,
+        "passive mobs"
+    ],
+    "parrot": [
+        70,
+        "passive mobs"
+    ],
+    "phantom": [
+        71,
+        "hostile mobs"
+    ],
+    "pig": [
+        72,
+        "passive mobs"
+    ],
+    "piglin": [
+        73,
+        "hostile mobs"
+    ],
+    "piglin brute": [
+        74,
+        "hostile mobs"
+    ],
+    "pillager": [
+        75,
+        "hostile mobs"
+    ],
+    "polar bear": [
+        76,
+        "passive mobs"
+    ],
+    "potion": [
+        77,
+        "projectiles"
+    ],
+    "pufferfish": [
+        78,
+        "passive mobs"
+    ],
+    "rabbit": [
+        79,
+        "passive mobs"
+    ],
+    "ravager": [
+        80,
+        "hostile mobs"
+    ],
+    "salmon": [
+        81,
+        "passive mobs"
+    ],
+    "sheep": [
+        82,
+        "passive mobs"
+    ],
+    "shulker": [
+        83,
+        "hostile mobs"
+    ],
+    "shulker bullet": [
+        84,
+        "projectiles"
+    ],
+    "silverfish": [
+        85,
+        "hostile mobs"
+    ],
+    "skeleton": [
+        86,
+        "hostile mobs"
+    ],
+    "skeleton horse": [
+        87,
+        "hostile mobs"
+    ],
+    "slime": [
+        88,
+        "hostile mobs"
+    ],
+    "small fireball": [
+        89,
+        "projectiles"
+    ],
+    "sniffer": [
+        90,
+        "passive mobs"
+    ],
+    "snow golem": [
+        91,
+        "passive mobs"
+    ],
+    "snowball": [
+        92,
+        "projectiles"
+    ],
+    "minecart with monster spawner": [
+        93,
+        "vehicles"
+    ],
+    "spectral arrow": [
+        94,
+        "projectiles"
+    ],
+    "spider": [
+        95,
+        "hostile mobs"
+    ],
+    "squid": [
+        96,
+        "passive mobs"
+    ],
+    "stray": [
+        97,
+        "hostile mobs"
+    ],
+    "strider": [
+        98,
+        "passive mobs"
+    ],
+    "tadpole": [
+        99,
+        "passive mobs"
+    ],
+    "text display": [
+        100,
+        "immobile"
+    ],
+    "primed tnt": [
+        101,
+        "unknown"
+    ],
+    "minecart with tnt": [
+        102,
+        "vehicles"
+    ],
+    "trader llama": [
+        103,
+        "passive mobs"
+    ],
+    "trident": [
+        104,
+        "projectiles"
+    ],
+    "tropical fish": [
+        105,
+        "passive mobs"
+    ],
+    "turtle": [
+        106,
+        "passive mobs"
+    ],
+    "vex": [
+        107,
+        "hostile mobs"
+    ],
+    "villager": [
+        108,
+        "passive mobs"
+    ],
+    "vindicator": [
+        109,
+        "hostile mobs"
+    ],
+    "wandering trader": [
+        110,
+        "passive mobs"
+    ],
+    "warden": [
+        111,
+        "hostile mobs"
+    ],
+    "witch": [
+        112,
+        "hostile mobs"
+    ],
+    "wither": [
+        113,
+        "hostile mobs"
+    ],
+    "wither skeleton": [
+        114,
+        "hostile mobs"
+    ],
+    "wither skull": [
+        115,
+        "projectiles"
+    ],
+    "wolf": [
+        116,
+        "passive mobs"
+    ],
+    "zoglin": [
+        117,
+        "hostile mobs"
+    ],
+    "zombie": [
+        118,
+        "hostile mobs"
+    ],
+    "zombie horse": [
+        119,
+        "hostile mobs"
+    ],
+    "zombie villager": [
+        120,
+        "hostile mobs"
+    ],
+    "zombified piglin": [
+        121,
+        "hostile mobs"
+    ],
+    "player": [
+        122,
+        "unknown"
+    ],
+    "fishing bobber": [
+        123,
+        "projectiles"
+    ]
+}

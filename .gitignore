@@ -2,9 +2,10 @@
 **/venv
 *.db
 *.env
-
 **/mock.py
 **/DATA
+**/data.py
+
 /node_modules
 /pyTest
 
