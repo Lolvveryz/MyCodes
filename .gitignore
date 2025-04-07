@@ -3,8 +3,8 @@
 *.db
 *.env
 
-/bot/weekBot/mock.py
-/bot/DATA
+**/mock.py
+**/DATA
 /node_modules
 /pyTest
 
