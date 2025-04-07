@@ -1,0 +1,46 @@
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .input-container {
+            text-align: center;
+        }
+        #nameInput {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="input-container">
+    <h4>Enter your name (name can't contain digits):</h4>
+    <input type="text" id="nameInput" oninput="validate()" />
+</div>
+
+<script>
+    function validate() {
+        value = nameInput.value;
+        newValue = "";
+
+        for (char of value) {
+            if (isNaN(char)) {
+                newValue += char;
+            }
+        }
+        nameInput.value = newValue;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+**/.idea
+**/venv
+*.db
+*.env
+
+/bot/weekBot/mock.py
+/bot/DATA
+/node_modules
+/pyTest
+
+/package-lock.json
+/package.json

@@ -1,0 +1,109 @@
+<html>
+    <body>
+        <h1>Second Lesson</h1>
+    </body>
+
+    <script>
+        shoppingList = [
+            { name: "Bread", quantity: 1, bought: true },
+            { name: "Milk", quantity: 2, bought: false },
+            { name: "Eggs", quantity: 10, bought: false },
+            { name: "Cheese", quantity: 1, bought: true },
+        ];
+
+        // 1
+        function displayShoppingList(list) {
+            unbought = []
+            bought = []
+
+            list.forEach((item) => {
+                if (item.bought) {bought.push(item);}
+                else {unbought.push(item);}
+            })
+            console.log("\n--------------------------")
+            console.log("Unbought products:");
+            unbought.forEach((item) => {
+                console.log(`${item.name} - ${item.quantity}`);
+            });
+
+            console.log("\nBought products:");
+            bought.forEach((item) => {
+                console.log(`${item.name} - ${item.quantity}`);
+            });
+            console.log("--------------------------\n\n")
+
+        }
+
+        // 2
+        function addProduct(list, name, quantity) {
+            names = [];
+            list.forEach((item) => {names.push(item.name);});
+
+            if (names.includes(name)) {
+                list[names.indexOf(name)].quantity += quantity;
+                console.log(`+${quantity}, now ${name} - ${list[names.indexOf(name)].quantity}`);
+            } else {
+                list.push({ name: name, quantity: quantity, bought: false });
+                console.log(`added ${name} - ${quantity}`);
+            }
+
+        }
+
+        // 3
+        function buyProduct(list, name) {
+            names = []
+            list.forEach((item) => {names.push(item.name);});
+            if (names.includes(name)) {
+                list[names.indexOf(name)].bought = true;
+            }
+        }
+
+        displayShoppingList(shoppingList);
+
+        addProduct(shoppingList, "Milk", 1);
+        addProduct(shoppingList, "Potatoes", 5);
+        addProduct(shoppingList, "Eggs", 15);
+
+        buyProduct(shoppingList, "Milk");
+        buyProduct(shoppingList, "Bread");
+
+        displayShoppingList(shoppingList);
+    </script>
+
+    <script>
+
+        check = [
+            { name: "Milk", quantity: 2, pricePerUnit: 25 },
+            { name: "Bread", quantity: 1, pricePerUnit: 20 },
+            { name: "Eggs", quantity: 10, pricePerUnit: 4 },
+            { name: "Cheese", quantity: 1, pricePerUnit: 150 },
+            { name: "Apples", quantity: 5, pricePerUnit: 15 },
+        ];
+
+        function displayCheck(list) {
+            console.log("\n--- Check ---");
+            list.forEach((item) => {
+                console.log(`${item.name} - ${item.quantity * item.pricePerUnit}`);
+            });
+            console.log("-------------");
+        }
+
+        function calculateTotal(list) {
+            total = 0;
+            list.forEach((item) => {
+                total += item.quantity * item.pricePerUnit;
+            });
+            return total;
+        }
+
+
+        console.log("------2------");
+        displayCheck(check);
+
+        console.log(`Total Amount: ${calculateTotal(check)}`);
+
+        console.log("-------------");
+    </script>
+
+
+</html>

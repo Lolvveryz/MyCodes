@@ -1,0 +1,60 @@
+<html>
+
+<body>
+
+<h1>Button types</h1>
+
+<script>
+    class Button {
+        constructor(width, height, text) {
+            this.width = width;
+            this.height = height;
+            this.text = text;
+        }
+
+        showBtn() {
+            document.write(
+                `<button style="width: ${this.width}px; height: ${this.height}px;">
+                    ${this.text}
+                 </button>`
+            );
+        }
+    }
+
+    class BootstrapButton extends Button {
+        constructor(width, height, text, color) {
+            super(width, height, text);
+            this.color = color;
+        }
+
+        showBtn() {
+            document.write(
+                `<button class="btn btn-${this.color}" style="width: ${this.width}px; height: ${this.height}px;">
+                    ${this.text}
+                 </button>`
+            );
+        }
+    }
+
+    // --- Створення та відображення об'єктів ---
+
+    // Створення звичайної кнопки
+    simpleButton = new Button(100, 40, 'Проста');
+    simpleButton.showBtn();
+
+    // Створення кнопки Bootstrap (primary)
+    primaryButton = new BootstrapButton(120, 45, 'Primary', 'primary');
+    primaryButton.showBtn();
+
+    // Створення кнопки Bootstrap (success)
+    successButton = new BootstrapButton(150, 50, 'Success!', 'success');
+    successButton.showBtn();
+
+    // Створення кнопки Bootstrap (danger)
+    dangerButton = new BootstrapButton(90, 35, 'Увага', 'danger');
+    dangerButton.showBtn();
+
+</script>
+
+</body>
+</html>

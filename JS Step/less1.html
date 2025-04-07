@@ -1,0 +1,59 @@
+<html lang="en">
+    <body></body>
+
+    <script>
+        // 1
+        userName = prompt("Enter your name:");
+        alert(`Hello, ${userName}!`);
+
+        // 2
+        const currentYear = new Date().getFullYear();
+        birthYear = new Date(prompt("Enter your birth year (YYYY-MM-DD):")).getFullYear();
+        age = currentYear - birthYear;
+        alert(`You are ${age} years old.`);
+
+        // 3
+        squareSide = prompt("Enter the side length of the square:");
+        alert(`The perimeter of the square is: ${4 * squareSide}`);
+
+        // 4
+        circleRadius = prompt("Enter the radius of the circle:");
+        area = Math.PI * circleRadius**2;
+        alert(`The area of the circle is: ${area}`);
+
+        // 5
+        distance = prompt("Enter the distance between cities in km:");
+        desiredTime = prompt("Enter the desired travel time in hours:");
+        alert(`The required speed is: ${distance / desiredTime} km/h`);
+
+        // 6
+        const exchangeRate = 0.85;
+        dollars = prompt("Enter the amount in dollars:");
+        alert(`${dollars} dollars = ${dollars * exchangeRate} euros`);
+
+        // 7
+        flashDriveCapacity = prompt("Enter the flash drive capacity in GB:");
+        const fileSize = 820;
+        filesCount = Math.floor((flashDriveCapacity * 1024) / fileSize);
+        alert(`${filesCount} files of 820 MB will fit on the flash drive`);
+
+        // 8
+        walletAmount = prompt("Enter the amount of money in your wallet:");
+        chocolatePrice = prompt("Enter the price of one chocolate bar:");
+        chocolatesCanBuy = Math.floor(walletAmount / chocolatePrice);
+        change = walletAmount % chocolatePrice;
+        alert(`You can buy ${chocolatesCanBuy} chocolate bars, and you will have ${change} change`);
+
+        // 9
+        number = prompt("Enter a three-digit number:");
+        first = number%10 * 100
+        second = number%100 - number%10;
+        third = (number - number%100)/100;
+        alert(`Reversed number: ${first+second+third}`);
+
+        // 10
+        num = Number(prompt("Enter an integer:"));
+        isEven = num === 0 ? 'zero' : num % 2 === 0 ? "even" : "odd";
+        alert(`The number ${num} is ${isEven}`);
+    </script>
+</html>

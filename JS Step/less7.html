@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Проста Форма з Валідацією</title>
+    <style>
+        /* Дуже базові стилі */
+        body { font-family: sans-serif; margin: 15px; }
+        #registrationArea label,
+        #registrationArea input { display: block; margin-bottom: 8px; width: 90%; }
+        .error { color: red; font-size: 0.8em; display: none; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div style="border: 1px solid #ccc; padding: 15px; max-width: 350px;">
+
+    <div id="registrationArea">
+        <h2>Реєстраційна форма</h2>
+        <form id="registrationForm">
+            <label for="firstName">Ім'я:</label>
+            <input type="text" id="firstName">
+            <div class="error" id="firstNameError"></div>
+
+            <label for="secondName">Прізвище:</label>
+            <input type="text" id="secondName">
+            <div class="error" id="secondNameError"></div>
+
+            <label for="login">Логін:</label>
+            <input type="text" id="login">
+            <div class="error" id="loginError"></div>
+
+            <label for="password">Пароль:</label>
+            <input type="password" id="password">
+            <div class="error" id="passwordError"></div>
+
+            <label for="retypePassword">Повторіть пароль:</label>
+            <input type="password" id="retypePassword">
+            <div class="error" id="retypePasswordError"></div>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email">
+            <div class="error" id="emailError"></div>
+
+            <label for="cellular">Телефон:</label>
+            <input type="text" id="cellular">
+            <div class="error" id="cellularError"></div>
+
+            <label for="code">Код:</label>
+            <input type="text" id="code">
+            <div class="error" id="codeError"></div>
+
+            <div>
+                <input type="checkbox" id="acceptRules" style="width: auto; display: inline-block;">
+                <label for="acceptRules" style="display: inline;">Погоджуюсь з правилами</label>
+                <div class="error" id="acceptRulesError"></div>
+            </div>
+
+            <button type="submit" style="margin-top: 10px;">Зареєструватись</button>
+        </form>
+        <div id="successMessage" style="color: green; margin-top: 15px; display: none;">
+            Форма успішно перевірена! (Симуляція відправки)
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const NAME_REGEX = /^[A-Za-zА-Яа-яІіЇїЄєҐґ' -]+$/;
+    const LOGIN_REGEX = /^[a-zA-Z0-9_-]{4,}$/;
+    const PASSWORD_REGEX = /^.{6,}$/;
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const DIGITS_REGEX = /^\d+$/;
+    const CELLULAR_REGEX = /^\+?\d{10,15}$/;
+
+    registrationForm.onsubmit = function(event) {
+        event.preventDefault();
+        isValid = true;
+
+        if (firstName.value.trim() === '') {
+            firstNameError.textContent = "Введіть ім'я";
+            isValid = false;
+        } else if (!NAME_REGEX.test(firstName.value)) {
+            firstNameError.textContent = "Ім'я містить недопустимі символи";
+            isValid = false;
+        }
+        if (!isValid) firstNameError.style.display = 'block', firstName.style.borderColor = 'red';
+
+        // Прізвище
+        isSecondNameValid = true;
+        if (secondName.value.trim() === '') { // **ПОГАНА ПРАКТИКА**
+            secondNameError.textContent = "Введіть прізвище"; isSecondNameValid = false;
+        } else if (!NAME_REGEX.test(secondName.value)) {
+            secondNameError.textContent = "Прізвище містить недопустимі символи"; isSecondNameValid = false;
+        }
+        if (!isSecondNameValid) { secondNameError.style.display = 'block'; secondName.style.borderColor = 'red'; isValid = false; }
+
+        // Логін
+        isLoginValid = true;
+        if (login.value.trim() === '') { // **ПОГАНА ПРАКТИКА**
+            loginError.textContent = "Введіть логін"; isLoginValid = false;
+        } else if (!LOGIN_REGEX.test(login.value)) {
+            loginError.textContent = "Логін має містити мінімум 4 символи (літери, цифри, _, -)"; isLoginValid = false;
+        }
+        if (!isLoginValid) { loginError.style.display = 'block'; login.style.borderColor = 'red'; isValid = false; }
+
+        // Пароль
+        isPasswordValid = true;
+        if (password.value === '') { // **ПОГАНА ПРАКТИКА**
+            passwordError.textContent = "Введіть пароль"; isPasswordValid = false;
+        } else if (!PASSWORD_REGEX.test(password.value)) {
+            passwordError.textContent = "Пароль має містити мінімум 6 символів"; isPasswordValid = false;
+        }
+        if (!isPasswordValid) { passwordError.style.display = 'block'; password.style.borderColor = 'red'; isValid = false; }
+
+        // Повтор пароля
+        isRetypeValid = true;
+        if (retypePassword.value === '') { // **ПОГАНА ПРАКТИКА**
+            retypePasswordError.textContent = "Повторіть пароль"; isRetypeValid = false;
+        } else if (retypePassword.value !== password.value) {
+            retypePasswordError.textContent = "Паролі не співпадають"; isRetypeValid = false;
+        }
+        if (!isRetypeValid) { retypePasswordError.style.display = 'block'; retypePassword.style.borderColor = 'red'; isValid = false; }
+
+        // Email
+        isEmailValid = true;
+        if (email.value.trim() === '') { // **ПОГАНА ПРАКТИКА**
+            emailError.textContent = "Введіть email"; isEmailValid = false;
+        } else if (!EMAIL_REGEX.test(email.value)) {
+            emailError.textContent = "Неправильний формат email"; isEmailValid = false;
+        }
+        if (!isEmailValid) { emailError.style.display = 'block'; email.style.borderColor = 'red'; isValid = false; }
+
+        // Телефон
+        isCellularValid = true;
+        if (cellular.value.trim() === '') { // **ПОГАНА ПРАКТИКА**
+            cellularError.textContent = "Введіть телефон"; isCellularValid = false;
+        } else if (!CELLULAR_REGEX.test(cellular.value.trim())) {
+            cellularError.textContent = "Неправильний формат (очікується + і 10-15 цифр)"; isCellularValid = false;
+        }
+        if (!isCellularValid) { cellularError.style.display = 'block'; cellular.style.borderColor = 'red'; isValid = false; }
+
+        // Код
+        isCodeValid = true;
+        if (code.value.trim() === '') { // **ПОГАНА ПРАКТИКА**
+            codeError.textContent = "Введіть код"; isCodeValid = false;
+        } else if (!DIGITS_REGEX.test(code.value.trim())) {
+            codeError.textContent = "Код повинен містити тільки цифри"; isCodeValid = false;
+        }
+        if (!isCodeValid) { codeError.style.display = 'block'; code.style.borderColor = 'red'; isValid = false; }
+
+        // Прапорець правил
+        if (!acceptRules.checked) { // **ПОГАНА ПРАКТИКА**
+            acceptRulesError.textContent = "Потрібно погодитись з правилами";
+            acceptRulesError.style.display = 'block';
+            isValid = false;
+        }
+        // --- Кінець перевірок ---
+
+        // Якщо форма валідна
+        if (isValid) {
+            console.log("Форма валідна!");
+            successMessage.style.display = 'block'; // Показуємо повідомлення про успіх **ПОГАНА ПРАКТИКА**
+            // Тут могла б бути відправка даних на сервер
+            // registrationForm.submit(); // - якщо б відправляли стандартно
+            // Або відправка через AJAX/fetch
+
+            // Очищуємо форму після "успішної відправки" (симуляція)
+            registrationForm.reset(); // **ПОГАНА ПРАКТИКА** (але тут логічно)
+
+        } else {
+            console.log("Форма містить помилки.");
+            successMessage.style.display = 'none'; // Ховаємо повідомлення про успіх, якщо є помилки
+        }
+
+        return false; // Завжди зупиняємо стандартну відправку
+    };
+
+</script>
+
+</body>
+</html>
