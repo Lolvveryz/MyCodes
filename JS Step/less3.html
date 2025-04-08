@@ -29,30 +29,25 @@
 
         showBtn() {
             document.write(
-                `<button class="btn btn-${this.color}" style="width: ${this.width}px; height: ${this.height}px;">
+                `<button style="width: ${this.width}px; height: ${this.height}px; background: ${this.color}">
                     ${this.text}
                  </button>`
             );
         }
     }
 
-    // --- Створення та відображення об'єктів ---
 
-    // Створення звичайної кнопки
-    simpleButton = new Button(100, 40, 'Проста');
+    simpleButton = new Button(100, 40, 'Simple');
     simpleButton.showBtn();
 
-    // Створення кнопки Bootstrap (primary)
-    primaryButton = new BootstrapButton(120, 45, 'Primary', 'primary');
-    primaryButton.showBtn();
+    BlueButton = new BootstrapButton(120, 45, 'Blue', 'blue');
+    BlueButton.showBtn();
 
-    // Створення кнопки Bootstrap (success)
-    successButton = new BootstrapButton(150, 50, 'Success!', 'success');
-    successButton.showBtn();
+    GreenButton = new BootstrapButton(150, 50, 'Green!', 'green');
+    GreenButton.showBtn();
 
-    // Створення кнопки Bootstrap (danger)
-    dangerButton = new BootstrapButton(90, 35, 'Увага', 'danger');
-    dangerButton.showBtn();
+    RedButton = new BootstrapButton(90, 35, 'Red', 'red');
+    RedButton.showBtn();
 
 </script>
 
