@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Прогноз Погоди</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f0f0; padding: 15px; }
+        .hidden { display: none; }
+        .container { background-color: #fff; border: 1px solid #ccc; padding: 15px; max-width: 650px; margin: 0 auto; /* Центрування */ }
+        .search-box { display: flex; margin-bottom: 20px; }
+        input[type="text"] { flex-grow: 1; padding: 8px; border: 1px solid #ccc; margin-right: 5px; }
+        button { padding: 8px 12px; border: 1px solid #ccc; background-color: #eee; cursor: pointer; }
+        #weatherInfo { border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9; }
+        .hourly-forecast { margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; }
+        .hourly-forecast h2 { font-size: 18px; text-align: center; margin: 0 0 10px 0; }
+        .hourly-items { display: flex; flex-wrap: wrap; gap: 8px; }
+        /* Стилі для самих елементів погоди будуть додані через JS */
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="search-box">
+        <input type="text" id="cityInput" placeholder="Введіть назву міста...">
+        <button id="searchBtn" onclick="searchWeather()">Пошук</button>
+    </div>
+
+    <div id="weatherInfo" class="hidden">
+        <div id="currentWeather"></div> <div class="hourly-forecast">
+        <h2>Погодинно</h2>
+        <div id="hourlyItems" style="display: flex; flex-wrap: wrap; gap: 8px;"></div> </div>
+    </div>
+
+</div>
+
+<script>
+    const myApiKey = '410261b64cb853a2e8fbfc26e2b0ff01';
+
+    function searchWeather() {
+        const city = cityInput.value.trim();
+
+        if (city === "") {
+            alert("Будь ласка, введіть назву міста!");
+            return;
+        }
+
+        weatherInfo.classList.add('hidden');
+
+        getWeatherData(city);
+    }
+
+    async function getWeatherData(cityName) {
+        const units = 'metric';
+        const lang = 'uk';
+        const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${myApiKey}&units=${units}&lang=${lang}`;
+        const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${myApiKey}&units=${units}&lang=${lang}`;
+
+        try {
+            responseWeather = await fetch(currentWeatherUrl);
+            if (!responseWeather.ok) {
+                if (responseWeather.status === 404) {
+                    throw Error("Місто не знайдено. Спробуйте іншу назву.");
+                } else {
+                    throw Error("Не вдалося отримати поточну погоду. Помилка: " + responseWeather.status);
+                }
+            }
+            const weatherData = await responseWeather.json();
+
+            const responseForecast = await fetch(forecastUrl);
+            forecastData = null;
+            if (responseForecast.ok) {
+                forecastData = await responseForecast.json();
+            } else {
+                alert("Не вдалося завантажити погодинний прогноз.");
+            }
+
+            displayWeather(weatherData, forecastData);
+
+        } catch (error) {
+            alert("Сталася помилка: " + error.message);
+            document.getElementById('weatherInfo').classList.add('hidden');
+        }
+    }
+
+    function displayWeather(weather, forecast) {
+
+        const date = new Date(weather.dt * 1000);
+
+        currentWeather.innerHTML = `
+            <p style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${weather.name}, ${weather.sys.country}</p>
+            <p style="font-size: 12px; color: gray; margin-bottom: 10px;">${date}</p>
+            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                <img src="http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png" alt="${weather.weather[0].description}" style="width: 50px; height: 50px; margin-right: 10px;">
+                <span style="font-size: 30px; font-weight: bold;">${Math.round(weather.main.temp)}°C</span>
+            </div>
+            <p style="font-size: 16px; text-transform: capitalize; margin-bottom: 8px;">${weather.weather[0].description}</p>
+            <p style="font-size: 13px; color: #333;">
+                Мін: ${Math.round(weather.main.temp_min)}°C / Макс: ${Math.round(weather.main.temp_max)}°C / Вітер: ${weather.wind.speed.toFixed(1)} м/с
+            </p>
+        `;
+
+        hourlyItems.innerHTML = '';
+
+        if (forecast && forecast.list) {
+            const forecastList = forecast.list.slice(0, 6);
+
+            forecastList.forEach(item => {
+                const time = new Date(item.dt * 1000);
+                const formattedTime = time.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+                const hourlyItemHTML = `
+                    <div style="border: 1px solid #eee; padding: 8px; text-align: center; background-color: #fff; min-width: 90px;">
+                        <p style="font-size: 13px; font-weight: bold; margin: 2px 0;">${formattedTime}</p>
+                        <img src="http://openweathermap.org/img/wn/${item.weather[0].icon}.png" alt="${item.weather[0].description}" style="width: 35px; height: 35px;">
+                        <p style="font-size: 15px; font-weight: bold; margin: 2px 0;">${Math.round(item.main.temp)}°C</p>
+                        <p style="font-size: 11px; color: gray; margin: 2px 0;">${item.wind.speed.toFixed(1)} м/с</p>
+                    </div>
+                `;
+                hourlyItems.innerHTML += hourlyItemHTML;
+            });
+        } else {
+            hourlyItems.innerHTML = '<p style="font-size: 12px; color: gray;">Погодинний прогноз недоступний.</p>';
+        }
+
+
+        // Показуємо весь блок погоди
+        weatherInfo.classList.remove('hidden');
+    }
+
+</script>
+</body>
+</html>

@@ -1,14 +1,61 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <style>
+        body { margin: 0; }
+        #field {
+            width: 100vw;
+            height: 100vh;
+            background-color: green;
+        }
+        #ball {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            left: calc(50vw - 50px);
+            top: calc(50vh - 50px);
+            transition: .5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
 <body>
-    <div>
-        <progress id="progressBar" value="0" max="100" style="color: aqua; height: 50px; width: 200px"></progress>
+    <div id="field" onclick="hitBall(event)">
+        <div id="ball">Ball</div>
     </div>
-    <button onclick="addProgress(event)" style="font-size: 20px; width: 200px">Add 5%</button>
 </body>
 
 <script>
-    function addProgress(event) {
-        progressBar.value += 5;
+    const ballSize = 100;
+
+    function hitBall(event){
+        const fieldWidth = field.offsetWidth;
+        const fieldHeight = field.offsetHeight;
+
+        let x = event.clientX - ballSize / 2;
+        let y = event.clientY - ballSize / 2;
+
+        if (x < 0) {
+            x = 0;
+        } else if (x > fieldWidth - ballSize) {
+            x = fieldWidth - ballSize;
+        }
+
+        if (y < 0) {
+            y = 0;
+        } else if (y > fieldHeight - ballSize) {
+            y = fieldHeight - ballSize;
+        }
+
+        ball.style.left = x +"px";
+        ball.style.top = y +"px";
     }
 </script>
+
 </html>

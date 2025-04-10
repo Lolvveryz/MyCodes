@@ -3,44 +3,77 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: sans-serif;
+            font-family: Arial, sans-serif;
         }
-        .input-container {
-            text-align: center;
-        }
-        #nameInput {
+
+        div {
+            background: #faff90;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-            width: 300px;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .color-box {
+            width: 100px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 100px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
         }
     </style>
 </head>
 <body>
 
-<div class="input-container">
-    <h4>Enter your name (name can't contain digits):</h4>
-    <input type="text" id="nameInput" oninput="validate()" />
-</div>
-
-<script>
-    function validate() {
-        value = nameInput.value;
-        newValue = "";
-
-        for (char of value) {
-            if (isNaN(char)) {
-                newValue += char;
-            }
-        }
-        nameInput.value = newValue;
-    }
-</script>
+<button type="button" onclick="addColor()">Add color</button>
+<div class="color-palette" id="palette"></div>
 
 </body>
+
+<script>
+    function addColor() {
+        newColorBox = document.createElement("div");
+        newColorBox.className = "color-box";
+        red = Math.random() * 255
+        green = Math.random() * 255
+        blue = Math.random() * 255
+        newColorBox.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+        newColorBox.onclick = deleteBox;
+
+        palette.appendChild(newColorBox);
+    }
+
+    function deleteBox(event) {
+        event.target.remove();
+    }
+
+</script>
 </html>

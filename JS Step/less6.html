@@ -1,107 +1,127 @@
 <html>
-    <head>
-        <style>
-            body {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin: 0;
-                font-family: Arial, sans-serif;
-            }
-
-            form {
-                background: #f9f9f9;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            div {
-                display: flex;
-                text-align: center;
-                align-items: center;
-                gap: 10px;
-            }
-
-            input[type="number"] {
-                width: 50px;
-            }
-
-            .color-palette {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-                margin-top: 20px;
-            }
-
-            .color-box {
-                width: 150px;
-                height: 50px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: white;
-                font-weight: bold;
-            }
-
-            button {
-                background: #007bff;
-                color: white;
-                border: none;
-                padding: 8px 16px;
-                cursor: pointer;
-                margin-top: 10px;
-            }
-
-            button:hover {
-                background: #0056b3;
-            }
-        </style>
-    </head>
-    <body>
-    <form>
-        <div>
-            R <input type="number" id="red" min="0" max="255" value="0">
-            G <input type="number" id="green" min="0" max="255" value="0">
-            B <input type="number" id="blue" min="0" max="255" value="0">
-        </div>
-        <button type="button" onclick="addColor()">Add color</button>
-    </form>
-    <div class="color-palette" id="palette">
-        <div class="color-box" style="background-color: rgb(165, 42, 42)">RGB(165, 42, 42)</div>
-        <div class="color-box" style="background-color: rgb(138, 43, 226)">RGB(138, 43, 226)</div>
-        <div class="color-box" style="background-color: rgb(0, 139, 139)">RGB(0, 139, 139)</div>
-        <div class="color-box" style="background-color: rgb(100, 149, 237)">RGB(100, 149, 237)</div>
-        <div class="color-box" style="background-color: rgb(210, 105, 30)">RGB(210, 105, 30)</div>
-        <div class="color-box" style="background-color: rgb(0, 206, 209)">RGB(0, 206, 209)</div>
-        <div class="color-box" style="background-color: rgb(189, 183, 107)">RGB(189, 183, 107)</div>
-        <div class="color-box" style="background-color: rgb(255, 105, 180)">RGB(255, 105, 180)</div>
-    </div>
-
-
-    </body>
-
-    <script>
-        function addColor() {
-            if (red.value >= 0 && red.value <= 255 && green.value >= 0 && green.value <= 255 && blue.value >= 0 && blue.value <= 255) {
-                newColorBox = document.createElement("div");
-                newColorBox.className = "color-box";
-                newColorBox.style.backgroundColor = `rgb(${red.value}, ${green.value}, ${blue.value})`;
-                newColorBox.innerHTML = `RGB(${red.value}, ${green.value}, ${blue.value})`;
-                if (red.value >= 220 || green.value >= 220 || blue.value >= 250) {
-                    newColorBox.style.color = `rgb(0,0,0)`
-                }
-
-                palette.appendChild(newColorBox);
-            } else {
-                alert("Value of colors might be only from 0 to 255.");
-            }
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
-    </script>
+
+        form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+<form id="quizForm">
+    <p id="question"><b></b></p>
+    <div id="options" class="options">
+    </div>
+    <button id="button" type="button" onclick="nextQuestion()">Next</button>
+</form>
+<div id="result" style="display: none;"></div>
+
+</body>
+
+<script>
+    current = 0;
+    correctAnswers = 0;
+    questions = [
+        {
+            question: '1) How many letters are there in the word "Hello"?',
+            options: ['5', '2'],
+            correctAnswer: '5'
+        },
+        {
+            question: '2) How many letters are there in the word "World"?',
+            options: ['4', '5'],
+            correctAnswer: '5'
+        }
+    ];
+
+    function displayQuestion() {
+        currentQuestion = questions[current];
+        question.innerHTML = `<b>${currentQuestion.question}</b>`;
+        options.innerHTML = '';
+
+        currentQuestion.options.forEach(option => {
+            label = document.createElement('label');
+            radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'answer';
+            radio.value = option;
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(` ${option}`));
+            options.appendChild(label);
+        });
+
+        if (current === questions.length - 1) {
+            button.textContent = 'Finish';
+        } else {
+            button.textContent = 'Next';
+        }
+    }
+
+    function nextQuestion() {
+        const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+
+        if (!selectedAnswer) {
+            alert('Please select an answer!');
+            return;
+        }
+
+        if (selectedAnswer.value === questions[current].correctAnswer) {
+            correctAnswers++;
+        }
+
+        current++;
+
+        if (current < questions.length) {
+            displayQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        quizForm.style.display = 'none';
+        result.textContent = `Result: ${correctAnswers} correct answers to ${questions.length} questions.`;
+        result.style.display = 'block';
+    }
+
+    displayQuestion();
+</script>
 </html>
