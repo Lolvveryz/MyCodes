@@ -4,12 +4,11 @@
 *.env
 **/mock.py
 **/DATA
-**/data.py
+**/data.
+**/__pycache__
 
 /node_modules
 /pyTest
-/bots/busines
-/bots/Bunker
 
 /package-lock.json
 /package.json
